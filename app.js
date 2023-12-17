@@ -1,17 +1,15 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 
-const customers = require("./CustomersController");
-const actor = require("./Actor/ActorController");
+const pokemon = require("./Pokemon/PokemonController");
 
 const app = express();
 const port = 4000;
 
-app.use("/actor", actor);
-app.use("/customers", customers);
+// Adicione o middleware bodyParser para analisar o corpo da solicitação como JSON
+app.use(bodyParser.json());
 
-app.get("/", (req, res) => {
-  res.end("Hello Guys!");
-});
+app.use("/pokemon", pokemon);
 
 app.listen(port, () => {
   console.log(`Este App está funcionando na porta ${port}`);
